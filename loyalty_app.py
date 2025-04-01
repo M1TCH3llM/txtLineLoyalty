@@ -33,6 +33,15 @@ def add_points(data, name, points):
         data[name] = points
         print(f"Added {points} points to {name}. New balance is {data[name]}")
 
+def list_points(data):
+
+    if not data:
+        print("No loyalty points available")
+    else:
+        print("Loyalty points:")
+        for name, points in data.items():
+            print(f"{name}: {points}")
+
 def welcome_message():
     print("Welcome to the Loyalty Points App")
     print("-------------------------------")
@@ -41,12 +50,30 @@ def main():
     data = load_loyalty()
 
     while True:
-        name = input("Enter the customer's name: ")
-        points = int(input("Enter the number of points to add: "))
+        command = input(">").strip().split()
 
-        add_points(data, name, points)
+        if not command:
+            continue
+        action = command[0].lower()
 
-        save_loyalty(data)
-
-        if input("Do you want to add more points? (y/n) ") != 'y':
+        if action == 'add':
+            if len(command) == 3:
+                name = command[1]
+                try:
+                    points = int(command[2])
+                    add_points(data, name, points)
+                except ValueError:
+                    print("Invalid points value")
+            else:
+                print("Usage: add <name> <points>")
+        elif action == 'list':
+            list_points(data)
+        elif action == 'exit':
+            save_loyalty(data)
             break
+        else:
+            print("Invalid command")
+
+if __name__ == '__main__':
+    welcome_message()
+    main()
