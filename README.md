@@ -27,7 +27,7 @@ This is a simple command-line application for managing customer loyalty points. 
 1. Run the application by executing the following command:
 
     ```bash
-    python loyalty_points.py
+    python3 loyalty_points.py
     ```
 
 2. The application will display a welcome message and a list of available commands.
