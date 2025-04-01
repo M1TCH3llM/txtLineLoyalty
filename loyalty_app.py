@@ -56,6 +56,29 @@ def list_points(data):
 def welcome_message():
     print("Welcome to the Loyalty Points App")
     print("-------------------------------")
+    print("Commands:")
+    print("  add <name> <points> - Adds points to a customer.")
+    print("  redeem <name> <points> - Redeems points from a customer.")
+    print("  show <name> - Shows a customer's points.")
+    print("  list - Lists all customers.")
+    print("  help - Displays this help message.")
+    print("  exit - Exits the application.")
+
+def Help_message():
+    print("Commands:")
+    print("  add <name> <points> - Adds points to a customer.")
+    print("  redeem <name> <points> - Redeems points from a customer.")
+    print("  show <name> - Shows a customer's points.")
+    print("  list - Lists all customers.")
+    print("  help - Displays this help message.")
+    print("  exit - Exits the application.")
+
+def show_points(data, name):
+    
+    if name in data:
+        print(f"{name} has {data[name]} points")
+    else:
+        print(f"{name} not found in database")
 
 def main():
     data = load_loyalty()
