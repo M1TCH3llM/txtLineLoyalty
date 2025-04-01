@@ -33,6 +33,17 @@ def add_points(data, name, points):
         data[name] = points
         print(f"Added {points} points to {name}. New balance is {data[name]}")
 
+def reedem_points(data, name, points):
+
+    if name in data:
+        if data[name] >= points:
+            data[name] -= points
+            print(f"Reedemed {points} points from {name}. New balance is {data[name]}")
+        else:
+            print(f"{name} does not have enough points to reedem")
+    else: 
+         print(f"{name} not founbd in data base")
+
 def list_points(data):
 
     if not data:
@@ -66,6 +77,18 @@ def main():
                     print("Invalid points value")
             else:
                 print("Usage: add <name> <points>")
+
+        elif action == 'reedem':
+            if len(command) == 3:
+                name = command[1]
+                try:
+                    points = int(command[2])
+                    reedem_points(data, name, points)
+                except ValueError:
+                    print("Invalid points value")
+            else:
+                print("Usage: reedem <name> <points>")
+
         elif action == 'list':
             list_points(data)
         elif action == 'exit':
