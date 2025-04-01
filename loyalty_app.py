@@ -101,7 +101,7 @@ def main():
             else:
                 print("Usage: add <name> <points>")
 
-        elif action == 'reedem':
+        elif action == 'redeem':
             if len(command) == 3:
                 name = command[1]
                 try:
@@ -110,10 +110,16 @@ def main():
                 except ValueError:
                     print("Invalid points value")
             else:
-                print("Usage: reedem <name> <points>")
-
+                print("Usage: redeem <name> <points>")
+        elif action == 'show':
+            if len(command) == 2:
+                show_points(data, command[1])
+            else:
+                print("Usage: show <name>")
         elif action == 'list':
             list_points(data)
+        elif action == 'help':
+            Help_message()
         elif action == 'exit':
             save_loyalty(data)
             break
