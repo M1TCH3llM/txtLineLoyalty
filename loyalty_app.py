@@ -4,28 +4,32 @@ import os
 """defining the path of the loyalty.txt file"""
 LOYALTY_FILE = 'loyalty.txt'
 
+'''defining the functions to load the loyalty points, save the loyalty points, add points to the customer, reedem points from the customer, list the points of the customer, show the points of the customer, and the welcome message'''
 def load_loyalty():
     
     data = {}
     """function to load the loyalty points from the loyalty.txt file"""
     if os.path.exists(LOYALTY_FILE):
-
+        '''opening the loyalty.txt file in read mode and reading the data from the file'''
         with open(LOYALTY_FILE, 'r') as f:
-
+            '''iterating through the file and splitting the data by comma'''
             for line in f:
                 name, points = line.strip().split(",")
-
+                '''storing the data in the dictionary'''
                 data[name] = int(points)
 
     return data
 
 def save_loyalty(data):
     """function to save the loyalty points to the loyalty.txt file"""
+    '''opening the loyalty.txt file in write mode and writing the data to the file'''
     with open(LOYALTY_FILE, 'w') as f:
-
+        '''iterating through the dictionary and writing the data to the file'''
         for name, points in data.items():
+            '''writing the data to the file'''
             f.write(f"{name},{points}\n")
 
+'''defining the functions to add points to the customer, reedem points from the customer, list the points of the customer, show the points of the customer, and the welcome message'''
 def add_points(data, name, points):
     if name in data:
         data[name] += points
